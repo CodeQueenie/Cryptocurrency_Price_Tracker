@@ -5,6 +5,10 @@ Bitcoin Dashboard Standalone
 A standalone dashboard for viewing Bitcoin prices.
 This script combines the functionality of view_database_contents.py and view_bitcoin_history.py
 into a single application that can be packaged with PyInstaller.
+
+Copyright (c) 2025 Nicole LeGuern
+Licensed under MIT License with attribution requirements
+https://github.com/CodeQueenie/Cryptocurrency_Price_Tracker
 """
 
 import os

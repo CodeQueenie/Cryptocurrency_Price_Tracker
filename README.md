@@ -127,9 +127,27 @@ To create a standalone application for distribution:
 - [docs/FAQ.md](docs/FAQ.md): Frequently asked questions
 - [REORGANIZATION_COMPLETE.md](REORGANIZATION_COMPLETE.md): Summary of the project reorganization
 
-## License
+## License and Attribution
 
-This project is licensed under the MIT License with an additional attribution requirement - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License with an attribution requirement - see the [LICENSE](LICENSE) file for details.
+
+Note: This version (v1.0) is released under MIT License for demonstration and portfolio purposes. Future versions may be released under different licensing terms.
+
+### Attribution Requirements
+
+When using this software or substantial portions of it, you must include the following attribution:
+
+Created by Nicole LeGuern (CodeQueenie). Original repository: [https://github.com/CodeQueenie/Cryptocurrency_Price_Tracker](https://github.com/CodeQueenie/Cryptocurrency_Price_Tracker)
+
+This attribution may be included in:
+- Documentation
+- "About" section of your application
+- Code comments
+- Credits file that ships with your software
+
+### Author
+
+Nicole LeGuern (GitHub: [CodeQueenie](https://github.com/CodeQueenie))
 
 ## Acknowledgments
 

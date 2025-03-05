@@ -1,5 +1,7 @@
 # Environment variables
 .env
+.env.*
+*.env
 
 # Python
 __pycache__/
@@ -31,6 +33,9 @@ ENV/
 # Database
 *.db
 *.sqlite3
+*.sqlite
+*.sql
+*.bak
 
 # Logs
 *.log
@@ -41,13 +46,43 @@ logs/
 .vscode/
 *.swp
 *.swo
+.spyderproject
+.spyproject
+.ropeproject
 
 # OS specific
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Installer files
 installer/
 *_Installer.zip
-*.exe
-*.msi
+
+# Credentials and sensitive data
+credentials/
+*_credentials.*
+*_key.*
+*_secret.*
+api_keys.txt
+secrets.json
+
+# Personal notes
+personal_notes.md
+commercialization_plans.md
+PRIVATE_*.md
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Excel temporary files
+~$*.xlsx
+~$*.xls
+
+# Generated data files
+*.xlsx
+*.csv
+!requirements.txt
+!sample_data/*.csv

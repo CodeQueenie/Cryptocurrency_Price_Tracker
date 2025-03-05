@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "LeGuern"
+    given-names: "Nicole"
+    orcid: "https://orcid.org/0000-0000-0000-0000" # Replace with your ORCID if you have one
+title: "Cryptocurrency Price Tracker"
+version: 1.0.0
+date-released: 2025-03-05
+url: "https://github.com/CodeQueenie/Cryptocurrency_Price_Tracker"
+repository-code: "https://github.com/CodeQueenie/Cryptocurrency_Price_Tracker"
+license: MIT
+abstract: >
+  A modular cryptocurrency tracker with interactive Bitcoin dashboard. 
+  Fetches real-time data from CoinGecko API, stores in PostgreSQL/MySQL/SQLite, 
+  and provides visualization tools with extensible architecture.
+keywords:
+  - cryptocurrency
+  - bitcoin
+  - data-visualization
+  - financial-data
+  - python

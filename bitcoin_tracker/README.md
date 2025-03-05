@@ -91,8 +91,24 @@ To add new features to the Bitcoin Tracker:
 2. Make your changes in the `bitcoin_tracker` directory
 3. Submit a pull request
 
-## License
+## License and Attribution
 
-This project is licensed under the MIT License with an additional attribution requirement - see the [LICENSE](LICENSE) file in the main project directory for details.
+This project is licensed under the MIT License with an attribution requirement - see the [LICENSE](../LICENSE) file in the main project directory for details.
 
- 2025 Nicole LeGuern. All rights reserved.
+Note: This version (v1.0) is released under MIT License for demonstration and portfolio purposes. Future versions may be released under different licensing terms.
+
+### Attribution Requirements
+
+When using this software or substantial portions of it, you must include the following attribution:
+
+Created by Nicole LeGuern (CodeQueenie). Original repository: [https://github.com/CodeQueenie/Cryptocurrency_Price_Tracker](https://github.com/CodeQueenie/Cryptocurrency_Price_Tracker)
+
+This attribution may be included in:
+- Documentation
+- "About" section of your application
+- Code comments
+- Credits file that ships with your software
+
+### Author
+
+Nicole LeGuern (GitHub: [CodeQueenie](https://github.com/CodeQueenie))

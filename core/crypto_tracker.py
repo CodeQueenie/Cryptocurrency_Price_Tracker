@@ -8,6 +8,10 @@ and stores them in a database.
 This module handles the core functionality of fetching cryptocurrency data
 from the CoinGecko API and storing it in a PostgreSQL or MySQL database.
 It includes scheduling capabilities for automated data collection.
+
+Copyright (c) 2025 Nicole LeGuern
+Licensed under MIT License with attribution requirements
+https://github.com/CodeQueenie/Cryptocurrency_Price_Tracker
 """
 
 import os
