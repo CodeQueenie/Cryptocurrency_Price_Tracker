@@ -45,3 +45,9 @@ logs/
 # OS specific
 .DS_Store
 Thumbs.db
+
+# Installer files
+installer/
+*_Installer.zip
+*.exe
+*.msi

@@ -19,10 +19,46 @@ load_dotenv()
 # Database configuration
 DB_TYPE = os.getenv("DB_TYPE", "postgresql")  # postgresql or mysql
 DB_HOST = os.getenv("DB_HOST", "localhost")
-DB_PORT = os.getenv("DB_PORT", "5432" if DB_TYPE == "postgresql" else "3306")
+DB_PORT_STR = os.getenv("DB_PORT", "5432" if DB_TYPE == "postgresql" else "3306")
+# Clean the DB_PORT to handle comments
+DB_PORT = DB_PORT_STR.split('#')[0].strip().strip('"\'')
 DB_NAME = os.getenv("DB_NAME", "crypto_tracker")
 DB_USER = os.getenv("DB_USER", "postgres" if DB_TYPE == "postgresql" else "root")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "")
+DB_PASSWORD_STR = os.getenv("DB_PASSWORD", "")
+# Clean the DB_PASSWORD to handle quotes and comments
+DB_PASSWORD = DB_PASSWORD_STR.split('#')[0].strip().strip('"\'')
+
+def create_db_engine():
+    """
+    Create and return a SQLAlchemy engine for database operations.
+    
+    Returns:
+        Engine: SQLAlchemy engine connected to the specified database.
+        
+    Raises:
+        Exception: If there's an error connecting to the database.
+    """
+    try:
+        # Determine the connection string based on DB_TYPE
+        if DB_TYPE.lower() == "sqlite":
+            # SQLite connection (file-based)
+            db_path = os.path.abspath(DB_NAME)
+            connection_string = f"sqlite:///{db_path}"
+        elif DB_TYPE.lower() == "postgresql":
+            # PostgreSQL connection
+            connection_string = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+        elif DB_TYPE.lower() == "mysql":
+            # MySQL connection
+            connection_string = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+        else:
+            raise ValueError(f"Unsupported database type: {DB_TYPE}")
+        
+        # Create and return the engine
+        engine = create_engine(connection_string)
+        return engine
+    except Exception as e:
+        print(f"Error creating database engine: {e}")
+        return None
 
 def get_db_connection():
     """
@@ -136,6 +172,21 @@ def get_price_history(coin_id, days=30):
         return pd.read_sql(query, engine)
     except Exception as e:
         raise Exception(f"Error fetching price history for {coin_id}: {e}")
+
+def get_bitcoin_history(days=7):
+    """
+    Get Bitcoin price history for the specified number of days.
+    
+    Args:
+        days (int, optional): Number of days of history to retrieve. Defaults to 7.
+        
+    Returns:
+        DataFrame: Pandas DataFrame containing the Bitcoin price history.
+        
+    Raises:
+        Exception: If there's an error executing the query.
+    """
+    return get_price_history('bitcoin', days)
 
 def get_rolling_averages(coin_id, window_size=7):
     """

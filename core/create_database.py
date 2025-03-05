@@ -2,20 +2,32 @@
 Script to create the crypto_tracker database
 """
 import psycopg2
+import os
 from psycopg2 import sql
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+from dotenv import load_dotenv
 
 def create_database():
     """Create the crypto_tracker database if it doesn't exist"""
+    # Load environment variables from .env file if it exists
+    if os.path.exists(".env"):
+        load_dotenv()
+    
+    # Get database configuration from environment variables or use defaults
+    db_host = os.getenv("DB_HOST", "localhost")
+    db_port = os.getenv("DB_PORT", "5432")  # Standard PostgreSQL port
+    db_user = os.getenv("DB_USER", "postgres")
+    db_password = os.getenv("DB_PASSWORD", "your_password")  # Generic default
+    
     # Connect to the default 'postgres' database to create our new database
     try:
         # Connect to PostgreSQL server
         print("Connecting to PostgreSQL server...")
         conn = psycopg2.connect(
-            host="localhost",
-            port="5434",
-            user="postgres",
-            password="admin123",
+            host=db_host,
+            port=db_port,
+            user=db_user,
+            password=db_password,
             database="postgres"  # Connect to the default database first
         )
         conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)

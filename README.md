@@ -2,101 +2,136 @@
 
 A beginner-friendly tool that automatically fetches live cryptocurrency prices, stores them in a database, and provides visualization capabilities.
 
+![Bitcoin Price Tracker](docs/bitcoin.ico)
+
+## Important Notice
+
+This project was created by Nicole LeGuern as a learning tool and portfolio piece. While it's open source under the MIT license, **any use of this code requires clear attribution to the original author**. This includes both personal and commercial applications.
+
 ## Features
 
 - Fetches real-time prices for Bitcoin, Ethereum, and other cryptocurrencies using the CoinGecko API
-- Stores price data in a PostgreSQL or MySQL database
-- Provides export options for Power BI, Tableau, and Excel dashboards
+- Stores price data in PostgreSQL, MySQL, or SQLite database
+- Provides export options for Excel dashboards
 - Automated data collection with Windows Task Scheduler
-- Optimized SQL queries for trend analysis and market insights
+- Interactive visualization of Bitcoin price trends
 - Comprehensive error handling and detailed logging
 
 ## Quick Start Guide
 
-### Prerequisites
+### For End Users (Standalone Application)
+
+1. Download the latest release from the [Releases](https://github.com/CodeQueenie/Cryptocurrency_Price_Tracker/releases) page
+2. Extract the ZIP file to any location on your computer
+3. Run the `install.bat` file
+4. Follow the on-screen instructions
+
+### For Developers
+
+#### Prerequisites
 
 - Python 3.8 or higher
-- PostgreSQL or MySQL database
-- Power BI, Tableau, or Excel (for visualization)
+- PostgreSQL, MySQL, or SQLite database
+- Windows operating system
 
-### Installation
+#### Installation
 
-1. **One-Click Setup**:
-   - Windows: Double-click `setup.bat`
-   - This will create a virtual environment, install all dependencies, and set up the database
+1. Clone the repository:
+   ```
+   git clone https://github.com/CodeQueenie/Cryptocurrency_Price_Tracker.git
+   cd Cryptocurrency_Price_Tracker
+   ```
 
-2. **Manual Setup**:
-   - Create a virtual environment: `python -m venv venv`
-   - Activate the virtual environment: 
-     - Windows: `venv\Scripts\activate`
-     - Linux/Mac: `source venv/bin/activate`
-   - Install dependencies: `pip install -r requirements.txt`
-   - Create the database: `python create_database.py`
-   - Configure your database connection in `.env` file
+2. Run the setup script to create a virtual environment and install dependencies:
+   ```
+   setup_venv.bat
+   ```
 
-### Configuration
-
-1. Copy `.env.example` to `.env`
-2. Edit `.env` with your database credentials and preferences
-3. Customize which cryptocurrencies to track and update frequency
-
-### Running the Application
-
-- **Manual**: 
-   1. Activate the virtual environment: `venv\Scripts\activate`
-   2. Run the tracker: `python crypto_tracker.py`
-- **Automated**: Add `run_crypto_tracker.bat` to Windows Task Scheduler
-
-### Visualizing Data
-
-1. Activate the virtual environment: `venv\Scripts\activate`
-2. Export data for visualization: `python export_for_visualization.py`
-3. Options for export formats:
-   - `--format powerbi`: Optimized for Power BI
-   - `--format tableau`: Optimized for Tableau
-   - `--format excel`: Creates multi-sheet Excel workbook
-   - `--format comparison`: Creates comparison of multiple cryptocurrencies
-   - `--format all`: Exports all formats
-
-## Dashboard Features
-
-- **Crypto Price Heatmap**: Track price fluctuations
-- **Portfolio Performance**: Calculate investment returns
-- **Market Trends**: Detect bullish/bearish trends using SQL rolling averages
-- **Time-Series Analysis**: Visualize price movements over time
+3. Configure your database connection in the `.env` file:
+   ```
+   DB_TYPE=postgresql  # or mysql, sqlite
+   DB_HOST=localhost
+   DB_PORT=5432  # or 3306 for MySQL, 0 for SQLite
+   DB_NAME=crypto_tracker  # or path to SQLite file
+   DB_USER=your_username
+   DB_PASSWORD=your_password
+   ```
 
 ## Project Structure
 
-- `crypto_tracker.py`: Main script for fetching and storing cryptocurrency data
-- `db_utils.py`: Database utility functions and optimized SQL queries
-- `export_for_visualization.py`: Data export tools for visualization
-- `create_database.py`: Creates the database for storing cryptocurrency data
-- `run_crypto_tracker.bat`: Batch file for running the tracker (for Task Scheduler)
-- `test_db_connection.py`: Tests database connectivity
-- `view_database_contents.py`: View the latest cryptocurrency prices stored in the database
+The project is organized into the following directories:
 
-## Virtual Environment
+- `core/` - Core functionality for cryptocurrency tracking
+  - `crypto_tracker.py` - Main class for fetching cryptocurrency data
+  - `db_utils.py` - Database utility functions
+  - `create_database.py` - Script to create the initial database
 
-This project uses a Python virtual environment to isolate dependencies and avoid conflicts:
+- `bitcoin_tracker/` - Bitcoin-specific implementation
+  - `bitcoin_dashboard_standalone.py` - Standalone Bitcoin dashboard application
 
-- The virtual environment is stored in the `venv` directory
-- Always activate the virtual environment before running any scripts
-- The setup.bat script will create and configure the virtual environment for you
-- All required packages are listed in requirements.txt
+- `ethereum_tracker/` - Placeholder for Ethereum-specific implementation (future)
 
-## Coding Style Guidelines
+- `scripts/` - Utility scripts
+  - `package_app.bat` - Script to package the application
+  - `create_installer.bat` - Script to create an installer
+  - `update_db_password.py` - Script to update the database password
+  - `fix_db_password.py` - Script to fix database password issues
 
-This project follows these coding style guidelines:
+- `docs/` - Documentation
+  - `SQL_QUERIES.md` - Documentation of SQL queries used
+  - `FAQ.md` - Frequently asked questions
 
-1. String literals use double quotes
-2. Variable names use snake_case
-3. Comprehensive error handling with try-except blocks
-4. Detailed docstrings for all functions and modules
+## Usage
 
-## Troubleshooting
+### Tracking Cryptocurrency Prices
 
-For common issues and solutions, please see the FAQ document in the docs folder.
+Run the cryptocurrency tracker to fetch and store prices:
+```
+run_crypto_tracker.bat
+```
+
+### Viewing Bitcoin Dashboard
+
+Launch the Bitcoin dashboard to view current and historical prices:
+```
+bitcoin_dashboard.bat
+```
+
+### Viewing Bitcoin Price History
+
+View historical Bitcoin price data:
+```
+view_bitcoin_history.bat
+```
+
+## Creating a Standalone Application
+
+To create a standalone application for distribution:
+
+1. Run the packaging script:
+   ```
+   package_app.bat
+   ```
+
+2. Create an installer package:
+   ```
+   create_installer.bat
+   ```
+
+3. The installer package will be available as `Bitcoin_Price_Tracker_Installer.zip`
+
+## Documentation
+
+- [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md): Guide for getting started with the application
+- [docs/SQL_QUERIES.md](docs/SQL_QUERIES.md): Documentation of SQL queries used in the application
+- [docs/FAQ.md](docs/FAQ.md): Frequently asked questions
+- [REORGANIZATION_COMPLETE.md](REORGANIZATION_COMPLETE.md): Summary of the project reorganization
 
 ## License
 
-MIT
+This project is licensed under the MIT License with an additional attribution requirement - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [CoinGecko API](https://www.coingecko.com/en/api) for providing cryptocurrency data
+- All contributors to the open-source libraries used in this project
