@@ -23,13 +23,18 @@ var/
 .installed.cfg
 *.egg
 
-# Logs
-*.log
-logs/
+# Virtual Environment
+venv/
+.venv/
+ENV/
 
 # Database
 *.db
 *.sqlite3
+
+# Logs
+*.log
+logs/
 
 # IDE
 .idea/

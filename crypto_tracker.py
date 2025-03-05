@@ -15,6 +15,7 @@ import time
 import logging
 import schedule
 import pandas as pd
+import re
 from datetime import datetime
 from pycoingecko import CoinGeckoAPI
 from sqlalchemy import create_engine, text
@@ -34,16 +35,32 @@ logger = logging.getLogger(__name__)
 # Load environment variables
 load_dotenv()
 
+# Helper function to clean environment variables
+def clean_env_value(value):
+    if value is None:
+        return None
+    # Remove quotes and trailing comments
+    value = value.strip()
+    if value.startswith('"') and value.endswith('"'):
+        value = value[1:-1]
+    if value.startswith("'") and value.endswith("'"):
+        value = value[1:-1]
+    # Remove any trailing comments
+    value = re.sub(r'\s+#.*$', '', value)
+    return value.strip()
+
 # Database configuration
-DB_TYPE = os.getenv("DB_TYPE", "postgresql")  # postgresql or mysql
-DB_HOST = os.getenv("DB_HOST", "localhost")
-DB_PORT = os.getenv("DB_PORT", "5432" if DB_TYPE == "postgresql" else "3306")
-DB_NAME = os.getenv("DB_NAME", "crypto_tracker")
-DB_USER = os.getenv("DB_USER", "postgres" if DB_TYPE == "postgresql" else "root")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "")
+DB_TYPE = clean_env_value(os.getenv("DB_TYPE", "postgresql"))  # postgresql or mysql
+DB_HOST = clean_env_value(os.getenv("DB_HOST", "localhost"))
+DB_PORT_STR = clean_env_value(os.getenv("DB_PORT", "5432" if DB_TYPE == "postgresql" else "3306"))
+# Extract just the numeric part for the port
+DB_PORT = int(re.sub(r'[^0-9]', '', DB_PORT_STR))
+DB_NAME = clean_env_value(os.getenv("DB_NAME", "crypto_tracker"))
+DB_USER = clean_env_value(os.getenv("DB_USER", "postgres" if DB_TYPE == "postgresql" else "root"))
+DB_PASSWORD = clean_env_value(os.getenv("DB_PASSWORD", ""))
 
 # CoinGecko API configuration
-COINS_TO_TRACK = os.getenv("COINS_TO_TRACK", "bitcoin,ethereum,cardano,solana,ripple,polkadot,dogecoin").split(",")
+COINS_TO_TRACK = clean_env_value(os.getenv("COINS_TO_TRACK", "bitcoin,ethereum,cardano,solana,ripple,polkadot,dogecoin")).split(",")
 UPDATE_INTERVAL = int(os.getenv("UPDATE_INTERVAL", "3600"))  # Default: 1 hour
 
 class CryptoTracker:

@@ -1,27 +1,23 @@
 # Cryptocurrency Price Tracker Dependencies
-# To install with conda, run: conda install --file requirements.txt -c conda-forge
+# To install with pip, run: pip install -r requirements.txt
 
 # Core dependencies
-python>=3.8
-requests>=2.31.0
-pandas>=2.1.0
-sqlalchemy>=2.0.20
-python-dotenv>=1.0.0
-schedule>=1.2.0
+requests==2.31.0
+pandas==2.1.0
+sqlalchemy==2.0.23
+python-dotenv==1.0.0
+schedule==1.2.0
+pycoingecko==3.1.0
 
 # Database connectors
-psycopg2>=2.9.7  # For PostgreSQL
-pymysql>=1.1.0   # For MySQL
-cryptography>=41.0.3  # Required for PyMySQL
+psycopg2-binary==2.9.9  # For PostgreSQL
+pymysql==1.1.0   # For MySQL
+cryptography==41.0.3  # Required for PyMySQL
 
 # Visualization exports
-openpyxl>=3.1.2  # For Excel exports
-matplotlib>=3.7.2  # For chart generation
+openpyxl==3.1.2  # For Excel exports
+matplotlib==3.8.0  # For chart generation
 
-# API client (not available in conda, install separately)
-# After creating your conda environment, run:
-# pip install pycoingecko==3.1.0
-
-# Note: If you're using conda, some packages might be installed with different names
-# For example, instead of psycopg2, you might need to use:
-# conda install -c conda-forge psycopg2-binary
+# Packaging
+pyinstaller==6.1.0
+tabulate==0.9.0

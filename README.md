@@ -16,20 +16,22 @@ A beginner-friendly tool that automatically fetches live cryptocurrency prices, 
 ### Prerequisites
 
 - Python 3.8 or higher
-- Conda package manager (recommended)
 - PostgreSQL or MySQL database
 - Power BI, Tableau, or Excel (for visualization)
 
 ### Installation
 
-1. **One-Click Setup with Conda (Recommended)**:
+1. **One-Click Setup**:
    - Windows: Double-click `setup.bat`
-   - This will create a Conda environment and install all dependencies
+   - This will create a virtual environment, install all dependencies, and set up the database
 
 2. **Manual Setup**:
-   - Create a Conda environment: `conda create -n crypto_tracker python=3.9`
-   - Activate the environment: `conda activate crypto_tracker`
-   - Install dependencies: `conda install --file requirements.txt`
+   - Create a virtual environment: `python -m venv venv`
+   - Activate the virtual environment: 
+     - Windows: `venv\Scripts\activate`
+     - Linux/Mac: `source venv/bin/activate`
+   - Install dependencies: `pip install -r requirements.txt`
+   - Create the database: `python create_database.py`
    - Configure your database connection in `.env` file
 
 ### Configuration
@@ -40,13 +42,16 @@ A beginner-friendly tool that automatically fetches live cryptocurrency prices, 
 
 ### Running the Application
 
-- **Manual**: Run `python crypto_tracker.py`
-- **Automated**: Run `python setup_scheduler.py` to set up automated data collection with Windows Task Scheduler
+- **Manual**: 
+   1. Activate the virtual environment: `venv\Scripts\activate`
+   2. Run the tracker: `python crypto_tracker.py`
+- **Automated**: Add `run_crypto_tracker.bat` to Windows Task Scheduler
 
 ### Visualizing Data
 
-1. Export data for visualization: `python export_for_visualization.py`
-2. Options for export formats:
+1. Activate the virtual environment: `venv\Scripts\activate`
+2. Export data for visualization: `python export_for_visualization.py`
+3. Options for export formats:
    - `--format powerbi`: Optimized for Power BI
    - `--format tableau`: Optimized for Tableau
    - `--format excel`: Creates multi-sheet Excel workbook
@@ -65,8 +70,19 @@ A beginner-friendly tool that automatically fetches live cryptocurrency prices, 
 - `crypto_tracker.py`: Main script for fetching and storing cryptocurrency data
 - `db_utils.py`: Database utility functions and optimized SQL queries
 - `export_for_visualization.py`: Data export tools for visualization
-- `setup_scheduler.py`: Sets up automated data collection
+- `create_database.py`: Creates the database for storing cryptocurrency data
+- `run_crypto_tracker.bat`: Batch file for running the tracker (for Task Scheduler)
 - `test_db_connection.py`: Tests database connectivity
+- `view_database_contents.py`: View the latest cryptocurrency prices stored in the database
+
+## Virtual Environment
+
+This project uses a Python virtual environment to isolate dependencies and avoid conflicts:
+
+- The virtual environment is stored in the `venv` directory
+- Always activate the virtual environment before running any scripts
+- The setup.bat script will create and configure the virtual environment for you
+- All required packages are listed in requirements.txt
 
 ## Coding Style Guidelines
 
